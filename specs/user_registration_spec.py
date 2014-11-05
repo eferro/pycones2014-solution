@@ -19,20 +19,15 @@ with description('Register user'):
 
     with before.each:
         self.nickname = '@foolano'
+        self.user_service = create_user_service()
 
     with it('initialy a user is not registered'):
-        user_service = create_user_service()
-
-        expect(user_service.is_registered('irrelevant_ninckname')).to(be_false)
+        expect(self.user_service.is_registered('irrelevant_ninckname')).to(be_false)
 
     with it('registers a new user'):
-        user_service = create_user_service()
+        self.user_service.register(self.nickname)
 
-        user_service.register(self.nickname)
-
-        expect(user_service.is_registered(self.nickname)).to(be_true)
-
-
+        expect(self.user_service.is_registered(self.nickname)).to(be_true)
 
     with _context('when user already exists'):
         with it('raises error'):
