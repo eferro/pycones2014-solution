@@ -1,3 +1,5 @@
+import pickle
+
 class InMemoryUserRepository(object):
     def __init__(self):
         self._users = {}
@@ -10,8 +12,17 @@ class InMemoryUserRepository(object):
 
 
 class FileUserRepository(object):
+    def __init__(self, file_path):
+        self.path = file_path
+        try:
+            self._users = pickle.load(open(self.path, "rb"))
+        except IOError:
+            self._users = {}
+
     def find_by_nickname(self, nickname):
-        pass
+        return self._users.get(nickname)
+
 
     def put(self, user):
-        pass
+        self._users[user.nickname] = user
+        pickle.dump(self._users, open(self.path, "wb" ))
