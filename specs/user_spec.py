@@ -6,7 +6,7 @@ with description('Register user'):
 
     with before.each:
         self.nickname = '@foolano'
-        self.user_service = factory.create_user_service()
+        self.user_service = factory.create_user_service(factory.in_memory_user_repository())
 
     with it('initialy a user is not registered'):
         expect(self.user_service.is_registered('irrelevant_ninckname')).to(be_false)
@@ -29,7 +29,7 @@ with description('User followers'):
         self.nickname = '@foolano'
         self.follower = '@futano'
         self.follower2 = '@futano2'
-        self.user_service = factory.create_user_service()
+        self.user_service = factory.create_user_service(factory.in_memory_user_repository())
 
     with it('initialy a user have no followers'):
         expect(self.user_service.followers_for(self.nickname)).to(be_empty)
