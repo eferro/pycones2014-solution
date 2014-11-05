@@ -3,10 +3,6 @@ from co import co
 from expects import expect, be_true, be_false, raise_error
 
 
-
-
-
-
 with description('Register user'):
 
     with before.each:
@@ -26,3 +22,4 @@ with description('Register user'):
             self.user_service.register(self.nickname)
 
             expect(lambda: self.user_service.register(self.nickname)).to(raise_error(co.UserAlreadyRegisteredError))
+

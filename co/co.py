@@ -16,3 +16,6 @@ class UserService(object):
 
     def is_registered(self, nickname):
         return nickname in self._users
+
+    def followers_for(self, nickname):
+    	return []
