@@ -22,4 +22,3 @@ with description('Register user'):
             self.user_service.register(self.nickname)
 
             expect(lambda: self.user_service.register(self.nickname)).to(raise_error(co.UserAlreadyRegisteredError))
-
