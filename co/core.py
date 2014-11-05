@@ -1,13 +1,6 @@
 
-class InMemoryUserRepository(object):
-    def __init__(self):
-        self._users = {}
+from co import errors
 
-    def find_by_nickname(self, nickname):
-        return self._users.get(nickname)
-
-    def put(self, user):
-        self._users[user.nickname] = user
 
 class User(object):
     def __init__(self, nickname):
@@ -21,22 +14,13 @@ class User(object):
         return self._followers
 
 
-def create_user_service(user_repository=None):
-    if user_repository is None:
-        user_repository = InMemoryUserRepository()
-    return UserService(user_repository)
-
-class UserAlreadyRegisteredError(Exception):
-    pass
-
-
 class UserService(object):
     def __init__(self, user_repository):
         self.user_repository = user_repository
 
     def register(self, nickname):
         if self.is_registered(nickname):
-            raise UserAlreadyRegisteredError()
+            raise errors.UserAlreadyRegisteredError()
         self.user_repository.put(User(nickname))
 
     def is_registered(self, nickname):
