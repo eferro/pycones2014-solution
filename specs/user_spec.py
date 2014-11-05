@@ -46,3 +46,23 @@ with description('User followers'):
         self.user_service.add_follower(self.nickname, follower=self.follower2)
 
         expect(self.user_service.followers_for(self.nickname)).to(contain_exactly(self.follower, self.follower2))
+
+
+with description('User cos'):
+
+    with before.each:
+        self.nickname = '@foolano'
+        self.user_service = factory.create_user_service(factory.in_memory_user_repository())
+
+    with it('initialy a user have no cos'):
+        self.user_service.register(self.nickname)
+
+        expect(self.user_service.cos_for(self.nickname)).to(be_empty)
+
+    with it('register a co for a nickname'):
+        self.user_service.register(self.nickname)
+
+        self.user_service.add_co(self.nickname, 'a_co1')
+        self.user_service.add_co(self.nickname, 'a_co2')
+
+        expect(self.user_service.cos_for(self.nickname)).to(contain_exactly('a_co1', 'a_co2'))

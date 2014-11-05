@@ -6,12 +6,19 @@ class User(object):
     def __init__(self, nickname):
         self.nickname = nickname
         self._followers = set()
+        self._cos = []
 
     def add_follower(self, follower):
         self._followers.add(follower)
 
     def followers(self):
         return self._followers
+
+    def add_co(self, co):
+        self._cos.append(co)
+
+    def cos(self):
+        return self._cos
 
 
 class UserService(object):
@@ -35,3 +42,14 @@ class UserService(object):
         if user is not None:
             user.add_follower(follower)
             self.user_repository.put(user)
+
+    def add_co(self, nickname, co):
+        user = self.user_repository.find_by_nickname(nickname)
+        if user is not None:
+            user.add_co(co)
+            self.user_repository.put(user)
+
+    def cos_for(self, nickname):
+        user = self.user_repository.find_by_nickname(nickname)
+        return user.cos() if user else []
+
