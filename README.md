@@ -10,6 +10,12 @@ Restricciones
 * No introduzcas infraestructura si la funcionalidad no lo pide explícitamente
 * No dependas de librerías si la funcionalidad no lo pide explícitamente
 
+Notas
+-----
+Si usamos mamba/expects para los tests, podemos ejecutar los tests con:
+```
+PYTHONPATH=. mamba
+```
 
 Iteración I: 10 minutos
 -----------------------
@@ -73,3 +79,4 @@ Iteración IV: 40 minutos
 Poner esta nueva funcionalidad disponible en el mecanismo de entrega.
 
 Garantizar la durabilidad de los datos.
+
