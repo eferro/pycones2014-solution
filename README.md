@@ -1,5 +1,7 @@
 Diseño modular dirigido por pruebas
 ===================================
+![pycones2014 Zaragoza](http://2014.es.pycon.org/static/img/pycones2014.svg) 
+![pyladies spain](https://pbs.twimg.com/profile_images/523981704998842369/Oy3DVPVr_400x400.png)
 
 Restricciones
 -------------
@@ -10,12 +12,20 @@ Restricciones
 * No introduzcas infraestructura si la funcionalidad no lo pide explícitamente
 * No dependas de librerías si la funcionalidad no lo pide explícitamente
 
-Notas
+=======
+Flujo
 -----
-Si usamos mamba/expects para los tests, podemos ejecutar los tests con:
-```
-PYTHONPATH=. mamba
-```
+* Evalua el impacto de cada funcionalidad
+* Realiza los cambios que necesites para que la funcionalidad sea facil de introducir
+* Introduce la funcionalidad
+
+Documentación herramientas testing
+----------------------------------
+
+* [Mamba](http://nestorsalceda.github.io/mamba/#overview)
+* [Expects](http://expects.readthedocs.org/en/v0.5.0/matchers.html)
+* [Doublex](http://python-doublex.readthedocs.org/en/latest/)
+* [Doublex-Expects](https://github.com/jaimegildesagredo/doublex-expects#matchers)
 
 Iteración I: 10 minutos
 -----------------------
@@ -37,12 +47,6 @@ Para hacerlo basta con conocer el nickname del usuario al que se quiere seguir.
 
 Cualquiera debe poder consultar a quien sigue un determinado usuario conociendo
 su nickname.
-
-
-Más restricciones:
-------------------
-
-No se puede modificar el código escrito hasta ahora
 
 
 Iteración III: 20 minutos
